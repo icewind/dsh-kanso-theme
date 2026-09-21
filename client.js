@@ -78,7 +78,7 @@ window.__ModuleLoader__.load({
 			'--dsw-specific-bubble': '#2a2c35', // mistBg1
 			'--dsw-specific-bubble-highlight': '#393b44', // mistBg2
 			'--dsw-specific-menu': '#2a2c35', // mistBg1
-			'--dsw-specific-tip': '#14171d', // inkBg0
+			'--dsw-specific-tip': '#2a2c35', // mistBg1 — raised inline panel (e.g. TODO card)
 			'--dsw-specific-selector': '#393b44', // mistBg2
 		};
 
@@ -139,7 +139,7 @@ window.__ModuleLoader__.load({
 			'--dsw-specific-bubble': '#e2e1df', // pearlWhite1
 			'--dsw-specific-bubble-highlight': '#dddddb', // pearlWhite2
 			'--dsw-specific-menu': '#e2e1df', // pearlWhite1
-			'--dsw-specific-tip': '#22262d', // inkBg2
+			'--dsw-specific-tip': '#e2e1df', // pearlWhite1 — raised inline panel
 			'--dsw-specific-selector': '#cacac7', // pearlWhite3
 		};
 
