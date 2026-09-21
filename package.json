@@ -1,6 +1,6 @@
 {
   "name": "dsh-kanso-theme",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Kanso (kanso.nvim) colorscheme for the DeepSeek Harness web UI",
   "keywords": [
     "dsh",

@@ -149,8 +149,9 @@ window.__ModuleLoader__.load({
 		// - text selection uses kanso's bg_visual (no ::selection rule
 		//   ships with the UI, so the browser default applies otherwise);
 		// - deliverable cards declare --deliverable-fill on their own root
-		//   class, shadowing any :root value, so it is re-declared on the
-		//   element itself;
+		//   class (a static gray), shadowing any :root value and tying our
+		//   selector on specificity — the doubled attribute selector
+		//   outspecifies it in both schemes regardless of stylesheet order;
 		// - the code-block wrapper re-declares --dsl-code-block-content-font
 		//   on itself, so the code font targets the shiki <pre> directly;
 		// - chat message body text is bumped one step via the markdown base
@@ -178,8 +179,8 @@ body[data-ds-dark-theme]{
   --shiki-token-punctuation:#909398;
   --shiki-token-link:#7fb4ca;
 }
-[class*="_root"]{--deliverable-fill:#e2e1df;--deliverable-hover:#cacac7;}
-body[data-ds-dark-theme] [class*="_root"]{--deliverable-fill:#2a2c35;--deliverable-hover:#393b44;}
+[class*="_root"][class*="_root"]{--deliverable-fill:#e2e1df;--deliverable-hover:#cacac7;}
+body[data-ds-dark-theme] [class*="_root"][class*="_root"]{--deliverable-fill:#2a2c35;--deliverable-hover:#393b44;}
 ::selection{background:#dddddb;color:#22262d;}               /* pearlWhite2 / pearlBlack0 */
 body[data-ds-dark-theme] ::selection{background:#393b44;color:#c5c9c7;} /* mistBg2 / fg */
 pre[class*="shiki"]{font:400 15px/25px var(--ds-font-family-code);}
