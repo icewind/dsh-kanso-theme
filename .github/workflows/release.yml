@@ -1,0 +1,54 @@
+name: Release
+
+# Publishes a new version to npm whenever code lands on main.
+# The version in package.json drives the release; a push that does not
+# bump the version is verified but not re-published.
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+
+      - name: Verify
+        run: |
+          node --check client.js
+          node --check index.js
+
+      - name: Check version is unpublished
+        id: version
+        run: |
+          VERSION="v$(node -p "require('./package.json').version")"
+          PUBLISHED="false"
+          if npm view "dsh-kanso-theme@${VERSION#v}" version >/dev/null 2>&1; then
+            PUBLISHED="true"
+          fi
+          echo "published=$PUBLISHED" >> "$GITHUB_OUTPUT"
+          echo "tag=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Publish to npm
+        if: steps.version.outputs.published == 'false'
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create GitHub release
+        if: steps.version.outputs.published == 'false'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
