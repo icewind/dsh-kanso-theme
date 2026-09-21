@@ -146,6 +146,8 @@ window.__ModuleLoader__.load({
 		// Syntax colors for shiki code snippets, kanso 'syn' palette:
 		// :root = pearl, body[data-ds-dark-theme] = mist.
 		// Also fixes surfaces plain token overrides cannot reach:
+		// - text selection uses kanso's bg_visual (no ::selection rule
+		//   ships with the UI, so the browser default applies otherwise);
 		// - deliverable cards declare --deliverable-fill on their own root
 		//   class, shadowing any :root value, so it is re-declared on the
 		//   element itself;
@@ -178,6 +180,8 @@ body[data-ds-dark-theme]{
 }
 [class*="_root"]{--deliverable-fill:#e2e1df;--deliverable-hover:#cacac7;}
 body[data-ds-dark-theme] [class*="_root"]{--deliverable-fill:#2a2c35;--deliverable-hover:#393b44;}
+::selection{background:#dddddb;color:#22262d;}               /* pearlWhite2 / pearlBlack0 */
+body[data-ds-dark-theme] ::selection{background:#393b44;color:#c5c9c7;} /* mistBg2 / fg */
 pre[class*="shiki"]{font:400 15px/25px var(--ds-font-family-code);}
 [class*="_bubble"]{font-size:calc(var(--dsh-content-font-size,14px) + 1px);line-height:calc(24px + var(--dsh-content-font-delta,0px) + 2px);}
 [class*="_markdown_"]{--dsw-font-markdown-base:400 calc(var(--dsh-content-font-size,14px) + 1px)/calc(24px + var(--dsh-content-font-delta,0px) + 2px) var(--dsw-font-family);}
