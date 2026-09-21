@@ -1,0 +1,41 @@
+{
+  "name": "dsh-kanso-theme",
+  "version": "1.0.0",
+  "description": "Kanso (kanso.nvim) colorscheme for the DeepSeek Harness web UI",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "kanso",
+    "theme",
+    "colorscheme"
+  ],
+  "license": "MIT",
+  "author": "icewind",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icewind/dsh-kanso-theme.git"
+  },
+  "bugs": {
+    "url": "https://github.com/icewind/dsh-kanso-theme/issues"
+  },
+  "homepage": "https://github.com/icewind/dsh-kanso-theme#readme",
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-theme"
+      ]
+    }
+  }
+}
